@@ -1,0 +1,28 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+service: serverless
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+plugins:
+ - serverless-offline
+
+functions:
+  getLastNames:
+    handler: serverless/handler.getLastNames
+    events:
+      - http:
+          path: last-names
+          method: get
+          cors: true
+
+custom:
+  serverless-offline:
+    httpPort: 4000
